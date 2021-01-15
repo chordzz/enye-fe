@@ -65,7 +65,7 @@ function App () {
 
 
     const todos = toRender;
-    const todosPerPage = 20;
+    const todosPerPage = 10;
 
     const indexOfLastTodo = activePage * todosPerPage;
     const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
