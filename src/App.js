@@ -35,6 +35,8 @@ function App () {
     }
 
     fetchProfiles();
+    console.log(fetchedProfiles.map(profile => profile.Gender))
+    console.log(fetchedProfiles.map(profile => profile.PaymentMethod))
   
   }, []);
 
@@ -48,7 +50,8 @@ function App () {
       isFilter = true;
       const val = e.target.value;
       if (e.target.name === 'fGender') {
-        setToRender(fetchedProfiles.filter(profile => profile.Gender === val))
+        setToRender(fetchedProfiles.filter(profile => profile.Gender === val));
+        
       } else if(e.target.name === 'fPayment') {
         setToRender(fetchedProfiles.filter(profile => profile.PaymentMethod === val))
       }
@@ -58,9 +61,10 @@ function App () {
       // setIsFilter(false)
       isFilter = false;
       setSearchField(e.target.value)
+      setToRender(fetchedProfiles.filter(person => person.FirstName.toLowerCase().includes(searchField.toLowerCase())));
     }
 
-    const filteredPeople = fetchedProfiles.filter(person => person.FirstName.toLowerCase().includes(searchField.toLowerCase()));
+    // const filteredPeople = fetchedProfiles.filter(person => person.FirstName.toLowerCase().includes(searchField.toLowerCase()));
     // setToRender(filteredPeople);
 
 
@@ -106,7 +110,7 @@ function App () {
             <CardList 
               renderTodos={renderTodos} 
               activePage={activePage} 
-              todos={filteredPeople} 
+              todos={toRender} 
               handlePageChange={handlePageChange}
             />
 

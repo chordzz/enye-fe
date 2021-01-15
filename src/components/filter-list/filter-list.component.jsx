@@ -14,6 +14,7 @@ export const FilterList = ({handleChange}) => {
                 <option value="">...</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
+                <option value="Prefer to skip">Prefer to Skip</option>
             </select>
 
             <label for="fGender">Filter By Payment Method:</label>
@@ -21,6 +22,8 @@ export const FilterList = ({handleChange}) => {
                 <option value="">...</option>
                 <option value="paypal">Pay pal</option>
                 <option value="cc">CC</option>
+                <option value="check">Check</option>
+                <option value="money order">Money Order</option>
             </select>
         </div>
         
