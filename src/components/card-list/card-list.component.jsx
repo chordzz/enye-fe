@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 // import ReactPaginate from 'react-paginate';
-import Pagination from "react-js-pagination";
+// import Pagination from "react-js-pagination";
 
 import './card-list.styles.css';
 
 import { Card } from "../card/card.component";
 
-export const CardList = ({renderTodos, activePage, todos, handlePageChange}) => {
+export const CardList = (props) => {
 
     // const [currentPage, setCurrentPage] = useState(0);
     // const [data, setData] = useState([]);
@@ -26,7 +26,7 @@ export const CardList = ({renderTodos, activePage, todos, handlePageChange}) => 
     return (
         <div className = 'card-list'>
 
-            {renderTodos}
+            {/* {renderTodos}
             <div className='pagination'>
                 <Pagination 
                     activePage = { activePage }
@@ -35,8 +35,8 @@ export const CardList = ({renderTodos, activePage, todos, handlePageChange}) => 
                     pageRangeDisplayed={3}
                     onChange={handlePageChange}
                 />
-            </div>
-            {/* {props.people.map((person, index) => <Card key={index} person={person} />)} */}
+            </div> */}
+            {props.people.map((person, index) => <Card key={index} person={person} />)}
             {/* <ReactPaginate 
                 previousLabel={'<<<'}
                 nextLabel={'>>>'}

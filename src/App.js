@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
+import Pagination from "react-js-pagination";
+
 
 import './App.css';
 
@@ -8,14 +10,14 @@ import Card from './components/card/card.component';
 import SearchBox from "./components/search-box/search-box.component";
 import {FilterList} from './components/filter-list/filter-list.component';
 
-function App () {
 
-  const [fetchedProfiles, setFetchedProfiles] = useState([]);
+function App () {
+  // const [isLoading, setIsLoading] = useState(false);
   // const [filtered, setFiltered] = useState([]);
   // const [isFilter, setIsFilter] = useState(false);
+  const [fetchedProfiles, setFetchedProfiles] = useState([]);
   const [searchField, setSearchField] = useState('');
-  // const [isLoading, setIsLoading] = useState(false);
-  const [toRender, setToRender] = useState([]);
+  const [toRender, setToRender] = useState('');
   const [activePage, setCurrentPage] = useState(1);
   let isFilter = false;
   let isLoading = false;
@@ -35,8 +37,8 @@ function App () {
     }
 
     fetchProfiles();
-    console.log(fetchedProfiles.map(profile => profile.Gender))
-    console.log(fetchedProfiles.map(profile => profile.PaymentMethod))
+    // console.log(fetchedProfiles.map(profile => profile.Gender))
+    // console.log(fetchedProfiles.map(profile => profile.PaymentMethod))
   
   }, []);
 
@@ -45,48 +47,51 @@ function App () {
         return <h1>Loading...</h1>
   } else {
 
+    let filteredPeople = fetchedProfiles.filter(person => person.FirstName.toLowerCase().includes(searchField.toLowerCase()));
+
+    const handleChange = e => {
+      // setIsFilter(false)
+      isFilter = false;
+      setSearchField(e.target.value)
+      setToRender('');
+      // setToRender(fetchedProfiles.filter(person => person.FirstName.toLowerCase().includes(searchField.toLowerCase())));
+
+    }
+
     const filter = (e) => {
       // setIsFilter(true);
       isFilter = true;
       const val = e.target.value;
       if (e.target.name === 'fGender') {
         setToRender(fetchedProfiles.filter(profile => profile.Gender === val));
+        // filteredPeople = fetchedProfiles.filter(profile => profile.Gender === val)
         
       } else if(e.target.name === 'fPayment') {
-        setToRender(fetchedProfiles.filter(profile => profile.PaymentMethod === val))
+        setToRender(fetchedProfiles.filter(profile => profile.PaymentMethod === val));
+        // filteredPeople = fetchedProfiles.filter(profile => profile.Gender === val)
       }
+      
     }
-
-    const handleChange = e => {
-      // setIsFilter(false)
-      isFilter = false;
-      setSearchField(e.target.value)
-      setToRender(fetchedProfiles.filter(person => person.FirstName.toLowerCase().includes(searchField.toLowerCase())));
-    }
-
-    // const filteredPeople = fetchedProfiles.filter(person => person.FirstName.toLowerCase().includes(searchField.toLowerCase()));
     // setToRender(filteredPeople);
 
-
-    const todos = toRender;
-    const todosPerPage = 10;
-
-    const indexOfLastTodo = activePage * todosPerPage;
-    const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
-    const currentTodos = todos.slice(indexOfFirstTodo, indexOfLastTodo);
-    let i = 100;
-    const renderTodos = currentTodos.map((todo, index) => {
-        return <Card key={i++} person={todo} />
-    })
-    const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber)
-    };
+    // const todos = toRender;
+    // const todosPerPage = 10;
+    // const indexOfLastTodo = activePage * todosPerPage;
+    // const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+    // const currentTodos = todos.slice(indexOfFirstTodo, indexOfLastTodo);
+    // let i = 100;
+    // const renderTodos = currentTodos.map((todo, index) => {
+    //     return <Card key={i++} person={todo} />
+    // })
+    // const handlePageChange = (pageNumber) => {
+    //     setCurrentPage(pageNumber)
+    // };
     
 
     return (
       <div className="App">
 
-        <h1>Patients</h1>
+        <h1>Profiles</h1>
 
         <SearchBox 
           placeholder="Search"
@@ -98,7 +103,7 @@ function App () {
         <FilterList handleChange = {filter} />
         
 
-        {
+        {/* {
           isFilter ? 
             <CardList 
               renderTodos={renderTodos} 
@@ -110,14 +115,16 @@ function App () {
             <CardList 
               renderTodos={renderTodos} 
               activePage={activePage} 
-              todos={toRender} 
+              todos={toRender ? toRender : fetchedProfiles} 
               handlePageChange={handlePageChange}
             />
-
-        }
+        } */}
 
         {/* <CardList people = {filteredPeople}/>
         {console.log(filtered)} */}
+
+        <CardList people = {toRender ? toRender : filteredPeople} />
+        
 
               
 
@@ -128,94 +135,3 @@ function App () {
 }
 
 export default App;
-
-
-
-
-  // function handleChangeFilter(e) {
-  //   setIsFilter(true);
-  //   setFilter(e.target.value);
-  // }
-
-  // function handleChangeSearch(e) {
-  //   setIsFilter(false);
-  //   setSearchField(e.target.value);
-  // }
-  
-
-  // const filteredPeople = records.profiles.filter(person => person.FirstName.toLowerCase().includes(searchField.toLowerCase()));
-
-  // return (
-    // <div className="App">
-
-    //   <h1>Patients</h1>
-
-    //   {/* <SearchBox 
-    //     placeholder="Search"
-    //     handleChange={e => setSearchField(e.target.value)}
-    //   /> */}
-      
-
-    //   {/* {
-    //     isFilter ? 
-    //       <CardList people = {maleArr}/>
-    //     : 
-    //       <CardList people = {filteredPeople}/>
-
-    //   } */}
-
-    //   <CardList people = {filteredPeople}/>
-
-            
-
-    // </div>
-  // );
-
-
-
-
-  // constructor() {
-  //   super();
-
-  //   this.state = {
-  //     records: {},
-  //     status: '',
-  //     size: '',
-  //     isLoading: false
-  //   }
-  // }
-
-  // componentDidMount() {
-
-  //   // this.setState({isLoading: true});
-
-  //   fetch('https://api.enye.tech/v1/challenge/records')
-  //   .then(response => response.json())
-  //   .then(data => return(
-  //     setRecords(data.records)
-  //     setStatus(data.status)
-  //     setSize(data.size)
-  //   ))
-  //   // .then(data => this.setState({records: data.records, status: data.status, size: data.size, isLoading: false}));
-  //   // .then(records => this.setState({ records: users}));
-    
-  // }
-
-  // render() {
-
-  // const {records, status, size, isLoading} = this.state;
-
-  // return (
-  //   <div className="App">
-  //     <header className="App-header">
-  //       <p>Hello World!</p>
-  //       <h1>Iferrum</h1>
-  //       {/* {console.log(records)}
-  //       {console.log(status)}
-  //       {console.log(size)} */}
-        
-  //       <CardList isLoading={isLoading} status={status} records={records} size={size}/>
-  //     </header>
-  //   </div>
-  // );
-  // }
