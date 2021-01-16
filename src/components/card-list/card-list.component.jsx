@@ -1,59 +1,49 @@
-import React from 'react';
-// import ReactPaginate from 'react-paginate';
-// import Pagination from "react-js-pagination";
+import React, {useState}from 'react';
+import Pagination from "react-js-pagination";
 
 import './card-list.styles.css';
 
 import { Card } from "../card/card.component";
 
-export const CardList = (props) => {
 
-    // const [currentPage, setCurrentPage] = useState(0);
-    // const [data, setData] = useState([]);
-    // const PER_PAGE = 10;
-    // const offset = currentPage * PER_PAGE;
-    // setData(props.people);
 
-    // const currentPageData = data.slice(offset, offset + PER_PAGE).map((person, index)=> <Card key={index} person={person} />)
+export const CardList = ({people}) => {
 
-    // const pageCount = Math.ceil(data.length / PER_PAGE);
+    const [activePage, setCurrentPage] = useState(1);
 
-    // function handlePageClick({ selected: selectedPage }) {
-    //     setCurrentPage(selectedPage);
-    // }
+    const profiles = people;
+    const profilesPerPage = 20;
+    const indexOfLastProfile = activePage * profilesPerPage;
+    const indexOfFirstProfile = indexOfLastProfile - profilesPerPage;
+    const currentProfiles = profiles.slice(indexOfFirstProfile, indexOfLastProfile);
+
+
+    const renderProfiles = currentProfiles.map((profile, index) => {
+        return <Card key={index} person={profile} />
+    })
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber)
+    };
 
 
     return (
-        <div className = 'card-list'>
+        <div>
 
-            {/* {renderTodos}
+            <div className = 'card-list'>
+                {renderProfiles}
+            </div>
+
             <div className='pagination'>
                 <Pagination 
                     activePage = { activePage }
                     itemsCountPerPage = { 3 }
-                    totalItemsCount = {todos.length}
+                    totalItemsCount = {profiles.length}
                     pageRangeDisplayed={3}
                     onChange={handlePageChange}
+                    
                 />
-            </div> */}
-            {props.people.map((person, index) => <Card key={index} person={person} />)}
-            {/* <ReactPaginate 
-                previousLabel={'<<<'}
-                nextLabel={'>>>'}
-                pageCount={pageCount}
-                onPageChange={handlePageClick}
-                containerClassName={'pagination'}
-                previousLinkClassName={"pagination__link"}
-                nextLinkClassName={"pagination__link"}
-                disabledClassName={"pagination__link--disabled"}
-                activeClassName={"pagination__link--active"}
-            />
-            {currentPageData} */}
+            </div>
         </div>
     );
-    // }
-    
-
 }
-
-export default CardList;

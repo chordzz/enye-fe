@@ -10,5 +10,3 @@ export const Card = ({person}) => (
         <p>{person.PhoneNumber}</p>
     </div>
 )
-
-export default Card;

@@ -1,8 +1,21 @@
-.card-list {
-    width: 85vw;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 20px;
-  }
+.filter-list {
+  width: 85vw;
+  margin: 0 auto;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; */
+  grid-gap: 20px;
+  padding-top: 15px;  
+}
+
+.filter {
+  border-radius: 10px;
+  height: 40px;
+  width: 150px;
+  margin: 0 20px 30px 20px;
+}
+
+label {
+  color: white;
+  padding: 10px;
+}
   
