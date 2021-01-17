@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/enye-fe/static/css/main.041fd1cf.chunk.css",
+    "main.js": "/enye-fe/static/js/main.5f4825eb.chunk.js",
+    "main.js.map": "/enye-fe/static/js/main.5f4825eb.chunk.js.map",
+    "runtime-main.js": "/enye-fe/static/js/runtime-main.ed0b156c.js",
+    "runtime-main.js.map": "/enye-fe/static/js/runtime-main.ed0b156c.js.map",
+    "static/js/2.1fdb848f.chunk.js": "/enye-fe/static/js/2.1fdb848f.chunk.js",
+    "static/js/2.1fdb848f.chunk.js.map": "/enye-fe/static/js/2.1fdb848f.chunk.js.map",
+    "index.html": "/enye-fe/index.html",
+    "static/css/main.041fd1cf.chunk.css.map": "/enye-fe/static/css/main.041fd1cf.chunk.css.map",
+    "static/js/2.1fdb848f.chunk.js.LICENSE.txt": "/enye-fe/static/js/2.1fdb848f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ed0b156c.js",
+    "static/js/2.1fdb848f.chunk.js",
+    "static/css/main.041fd1cf.chunk.css",
+    "static/js/main.5f4825eb.chunk.js"
+  ]
+}
