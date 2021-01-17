@@ -1,9 +1,13 @@
 .card-list {
-  width: 85vw;
+  /* width: 85vw; */
+  width: 90%;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+  display: flex;
+  /* grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .pagination {
@@ -18,17 +22,18 @@ ul {
 ul.pagination li {
   /* display: inline-block; */
   width: 50px;
-  border: 1px solid #fcfcfc;
+  border: 3px solid #fcfcfc;
   display: inline-block;
   justify-content: center;
   font-size: 25px;
-  padding: 5px;
+  padding-bottom: 10px;
 }
 
 ul.pagination li a {
   text-decoration: none;
-  color: #080808;
+  color: #faf5f5;
   font-size: 20px;
+  font-weight: 500;
 }
 
 ul.pagination li.active a {

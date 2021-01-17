@@ -1,4 +1,7 @@
+// Main Program
 
+
+// Import needed dependencies 
 import React, { useState, useEffect } from 'react';
 
 import './App.css';
@@ -8,7 +11,10 @@ import { SearchBox } from "./components/search-box/search-box.component";
 import { FilterList } from './components/filter-list/filter-list.component';
 
 
+// Main app function
 function App () {
+
+
   const [isLoading, setIsLoading] = useState(false);
   const [fetchedProfiles, setFetchedProfiles] = useState([]);
   const [searchField, setSearchField] = useState('');
@@ -16,6 +22,8 @@ function App () {
   
   useEffect(() => {
 
+
+    // this fetches the profiles from the provided API
     const fetchProfiles = async () => {
       setIsLoading(true);
 
@@ -30,11 +38,16 @@ function App () {
   }, []);
 
   
+  // Checks if the API has fetched the needed profiles and populated the state or not
   if(isLoading) {
         return <h1>Loading...</h1>
   } else {
 
-    let filteredPeople = fetchedProfiles.filter(person => person.FirstName.toLowerCase().includes(searchField.toLowerCase()));
+    // Adds a fullname(concatenation of firstname and lastname) property to the array of profiles 
+    fetchedProfiles.forEach(person => person.fullName = person.FirstName + ' ' +person.LastName);
+
+    //This is responsible for the search function in the app
+    let filteredPeople = fetchedProfiles.filter(person => person.fullName.toLowerCase().includes(searchField.toLowerCase()));
 
     const handleChange = e => {
 
@@ -42,6 +55,8 @@ function App () {
       setToRender('');
     }
 
+
+    // This is responsible for the individual filter fields on the app
     const filter = (e) => {
 
       const val = e.target.value;
@@ -60,16 +75,20 @@ function App () {
       
     }
 
-    
+
+    // This returns the needed div to be rendered
     return (
       <div className="App">
 
         <h1>Profiles</h1>
 
+        {/* Searchbox component rendered */}
         <SearchBox placeholder="Search" handleChange={handleChange} />
 
+        {/* Dropdown for filtering fields */}
         <FilterList handleChange = {filter} />
 
+        {/* List to be rendered */}
         <CardList people = {toRender ? toRender : filteredPeople} />
         
       </div>

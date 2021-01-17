@@ -22,10 +22,7 @@ export const FilterList = ({handleChange}) => {
                 <option value="check">Check</option>
                 <option value="money order">Money Order</option>
             </select>
-        </div>
-        
+        </div>   
     )
-
-    
 }
 

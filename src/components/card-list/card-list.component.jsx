@@ -9,6 +9,8 @@ import { Card } from "../card/card.component";
 
 export const CardList = ({people}) => {
 
+
+    // Logic for Pagination
     const [activePage, setCurrentPage] = useState(1);
 
     const profiles = people;
@@ -29,7 +31,6 @@ export const CardList = ({people}) => {
 
     return (
         <div>
-
             <div className = 'card-list'>
                 {renderProfiles}
             </div>

@@ -11,8 +11,8 @@ body {
     rgb(17, 17, 17) 0%,
     rgb(95, 95, 95) 100%
   ); */
-  background-color: rgba(70, 70, 192, 0.61);
-
+  /* background-color: rgba(70, 70, 192, 0.61); */
+  background-color: rgb(75, 67, 67);
 }
 
 code {
